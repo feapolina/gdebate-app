@@ -1,15 +1,44 @@
-# To-Do List
+# dDMF - Dia do Debate Maria e Felipe.
+![Imagem do meu projeto]()
+ Eu e minha namorada gostados de debater, e eu decidi fazer um app que permite pegar notícias recentes usando a API do Google Gemini, e com base nessa notícia gerar um título de um debate para que possamos discutir toda sexta-feira.
 
-[x] Criar um botão de remindMe
-[x] Adicionar icones lucide
-[x] Melhorar as notificações
-[x] Caso já tenha clicado no botão, não permitir outro clique.
-[x] Criar integração com API do GEMINI
-[x] fazer a ia parar de colocar titulo da noticia no começo
-[x] Caso seja sexta, tirar o titulo "proximo debate em" e trocar pra "tema de hoje"
-[x] modularizar função de requestandshowpermission
-[x] fazer uma limpa no tailwind e retirar redundâncias.
-[x] modularizar função de fetch da api
-[x] implementar possibilidade de gerar apenas uma pergunta por semana.
-[ ] implementar possibilidade de enviar notificações mesmo sem abrir a página.
-[ ] Publicar no github
+## Recursos Principais
+- O App faz uma requisição à API do Gemini toda sexta-feira e gera um título de debate.
+
+## Como Usar
+- Você pode acessar o projeto aqui:
+  (https://feapolina.github.io/debate_day_deploy/)
+
+## Executar Localmente
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/feapolina/debate_day_deploy.git
+```
+
+Vá para o diretorio do projeto
+
+```bash
+  Abra o terminal de digite:
+
+  pnpm run dev
+```
+
+
+## Tecnologias Utilizadas
+
+### Back end:
+- TypeScript.
+
+### Front end:
+- ReactJS e Tailwindcss.
+
+
+## Autores:
+
+- [@feapolina](https://github.com/feapolina)
+
+## Feedback
+
+Se você tiver algum feedback, entre em contato pelo email: fe.cavalcanti2016@gmail.com
