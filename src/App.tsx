@@ -3,6 +3,7 @@ import { RemindButton } from "./RemindButton.tsx";
 import { useState, useEffect } from "react";
 import { LucideSparkles } from "lucide-react";
 import { generateNewsHeadline } from "./gemini.ts";
+import logo from "../public/dDMF-logo.svg";
 
 const sendNotification = () => {
   let title = "Hoje é dia de debate!";
@@ -88,7 +89,7 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center space-y-10 text-white antialiased font-Inter font-semibold">
-      <img src="./src/assets/dDMF.png" alt=" logo da pagina" />
+      <img src={logo} alt="logo" />
 
       <h1 className="text-2xl">{nextDebateOrTitle}</h1>
 
