@@ -1,7 +1,6 @@
 import { getDay } from "date-fns";
-import { RemindButton } from "./RemindButton.tsx";
 import { useState, useEffect } from "react";
-import { LucideSparkles } from "lucide-react";
+import { LucideSparkles, LucideHourglass } from "lucide-react";
 import { generateNewsHeadline } from "./gemini.ts";
 import logo from "../public/dDMF-logo.svg";
 
@@ -91,7 +90,7 @@ export function App() {
     <div className="min-h-screen flex flex-col justify-center items-center space-y-10 text-white antialiased font-Inter font-semibold">
       <img src={logo} alt="logo" />
 
-      <h1 className="text-2xl">{nextDebateOrTitle}</h1>
+      <h1 className="lg:text-4xl md:text-4xl sm:text-4xl">{nextDebateOrTitle}</h1>
 
       <div className="flex bg-slate-800 w-auto h-auto p-5 justify-center items-center rounded">
         {Number(daysTillFriday) === 0 ? (
@@ -108,16 +107,16 @@ export function App() {
             )}
           </div>
         ) : (
-          <div>
+          <div className="flex flex-col justify-center items-center space-y-2">
             <h2 className="text-6xl">{daysTillFriday}</h2>
             <h3 className="ml-0.5">DIAS</h3>
+            <LucideHourglass className="animate-spin-slow " size={16} />
           </div>
         )}
       </div>
       <div>
-        <RemindButton />
       </div>
-      <div className="text-sm">
+      <div className="text-sm opacity-50">
         <p>Made with ❤ by Felipe Cavalcanti and Maria Clara</p>
       </div>
     </div>
