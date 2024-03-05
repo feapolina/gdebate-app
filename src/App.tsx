@@ -88,9 +88,9 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center space-y-10 text-white antialiased font-Inter font-semibold">
-      <img src="./src/assets/dDMF.svg" alt="Logo da página" />
+      <img src="./src/assets/dDMF.png" alt=" logo da pagina" />
 
-      <h1 className="text-4xl">{nextDebateOrTitle}</h1>
+      <h1 className="text-2xl">{nextDebateOrTitle}</h1>
 
       <div className="flex bg-slate-800 w-auto h-auto p-5 justify-center items-center rounded">
         {Number(daysTillFriday) === 0 ? (
@@ -116,7 +116,7 @@ export function App() {
       <div>
         <RemindButton />
       </div>
-      <div>
+      <div className="text-sm">
         <p>Made with ❤ by Felipe Cavalcanti and Maria Clara</p>
       </div>
     </div>
