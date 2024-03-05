@@ -9926,7 +9926,7 @@ function Dp() {
         "min-h-screen flex flex-col justify-center items-center space-y-10 text-white antialiased font-Inter font-semibold",
       children: [
         H.jsx("img", {
-          src: "./src/assets/dia-do-debate-app/dist/assets/dDMF.png",
+          src: "../public/dDMF-B7pj9KfB.svg",
           alt: " logo da página",
         }),
         H.jsx("h1", { className: "text-4xl", children: n }),
