@@ -2,38 +2,11 @@ import { getDay } from "date-fns";
 import { useState, useEffect } from "react";
 import { LucideSparkles, LucideHourglass } from "lucide-react";
 import { generateNewsHeadline } from "./gemini.ts";
-import logo from "../public/dDMF-logo.svg";
-
-const sendNotification = () => {
-  let title = "Hoje é dia de debate!";
-  let body = "Clique na notificação para descobrir qual o tema de hoje!";
-
-  let notification = new Notification(title, { body });
-
-  notification.onclick = () => {
-    notification.close();
-    window.parent.focus();
-  };
-};
+import logo from "/dDMF-logo.svg";
 
 function calculateDaysTillFriday() {
   const date = new Date();
   const dayOfWeek = getDay(date);
-  const [isNotificationSent, setIsNotificationSent] = useState(false);
-
-  useEffect(() => {
-    // verifica se já foi enviada uma notificação hoje
-    const hasNotificationSentToday = localStorage.getItem(
-      `hasNotificationSentToday`
-    );
-    if (dayOfWeek === 5 && !isNotificationSent && !hasNotificationSentToday) {
-      sendNotification();
-      setIsNotificationSent(true);
-
-      // Marca que a notificação foi enviada hoje
-      localStorage.setItem("hasNotificationSentToday", "true");
-    }
-  });
 
   if (dayOfWeek < 5) {
     const daysTillFriday = 5 - dayOfWeek;
@@ -49,34 +22,22 @@ function calculateDaysTillFriday() {
 export function App() {
   const [newsHeadline, setNewsHeadline] = useState("");
   const [nextDebateOrTitle, setNextDebateOrTitle] = useState("");
-  const [hasTitleBeenGenerated, setHasTitleBeenGenerated] = useState(false);
   const daysTillFriday = calculateDaysTillFriday();
 
   useEffect(() => {
     // verifica se já foi gerada um título de debate
-    const storedTitle = localStorage.getItem("generatedNewsHeadline");
-    if (Number(daysTillFriday) === 0 && !hasTitleBeenGenerated) {
-      if (storedTitle) {
-        setNewsHeadline(storedTitle);
-      } else {
-        async function fetchNewsHeadline() {
-          try {
-            const headline = await generateNewsHeadline();
-            setNewsHeadline(headline);
-
-            // armazena o titulo no local storage
-            localStorage.setItem("generatedNewsHeadline", headline);
-          } catch (error) {
-            console.log("Erro ao fazer o fetch da noticia: ", error);
-          }
+    if (Number(daysTillFriday) === 0) {
+      async function fetchNewsHeadline() {
+        try {
+          const headline = await generateNewsHeadline();
+          setNewsHeadline(headline);
+        } catch (error) {
+          console.log("Erro ao fazer o fetch da noticia: ", error);
         }
-        fetchNewsHeadline();
-        setHasTitleBeenGenerated(true);
-        // Marca que o titulo foi gerado hoje
-        localStorage.setItem("hasTitleBeenGenerated", "true");
       }
+      fetchNewsHeadline();
     }
-  }, [daysTillFriday, hasTitleBeenGenerated]);
+  }, [daysTillFriday]);
 
   useEffect(() => {
     if (Number(daysTillFriday) === 0) {
@@ -90,15 +51,17 @@ export function App() {
     <div className="min-h-screen flex flex-col justify-center items-center space-y-10 text-white antialiased font-Inter font-semibold">
       <img src={logo} alt="logo" />
 
-      <h1 className="lg:text-4xl md:text-4xl sm:text-4xl">{nextDebateOrTitle}</h1>
+      <h1 className="lg:text-4xl md:text-4xl sm:text-4xl">
+        {nextDebateOrTitle}
+      </h1>
 
       <div className="flex bg-slate-800 w-auto h-auto p-5 justify-center items-center rounded">
         {Number(daysTillFriday) === 0 ? (
           <div>
             {newsHeadline ? (
               <div>
-                <h3 className="flex text-2xl gap-2">
-                  <LucideSparkles />
+                <h3 className="flex text-2xl gap-2 justify-center items-center">
+                  <LucideSparkles className="animate-pulse text-yellow-400" />
                   {newsHeadline}
                 </h3>
               </div>
@@ -114,8 +77,7 @@ export function App() {
           </div>
         )}
       </div>
-      <div>
-      </div>
+      <div></div>
       <div className="text-sm opacity-50">
         <p>Made with ❤ by Felipe Cavalcanti and Maria Clara</p>
       </div>
