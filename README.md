@@ -1,5 +1,5 @@
 # dDMF - Dia do Debate Maria e Felipe.
-![Imagem do meu projeto]()
+![Imagem do meu projeto](./img.png)
  Eu e minha namorada gostados de debater, e eu decidi fazer um app que permite pegar notícias recentes usando a API do Google Gemini, e com base nessa notícia gerar um título de um debate para que possamos discutir toda sexta-feira.
 
 ## Recursos Principais
