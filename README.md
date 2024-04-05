@@ -20,9 +20,7 @@ Clone o projeto
 Vá para o diretorio do projeto
 
 ```bash
-  Abra o terminal de digite:
-
-  pnpm run dev
+  Execute o arquivo index.html
 ```
 
 
