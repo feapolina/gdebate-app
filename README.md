@@ -7,14 +7,14 @@
 
 ## Como Usar
 - Você pode acessar o projeto aqui:
-  (https://feapolina.github.io/debate_day_deploy/)
+  (https://feapolina.github.io/gdebate-app/)
 
 ## Executar Localmente
 
 Clone o projeto
 
 ```bash
-  git clone https://github.com/feapolina/debate_day_deploy.git
+  git clone https://github.com/feapolina/gdebate-app.git
 ```
 
 Vá para o diretorio do projeto
