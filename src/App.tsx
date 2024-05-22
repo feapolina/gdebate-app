@@ -7,8 +7,7 @@ import logo from "/dDMF-logo.svg";
 
 function calculateDaysTillFriday() {
   const date = new Date();
-  //const currentDayOfWeek = getDay(date);
-  const currentDayOfWeek = 5;
+  const currentDayOfWeek = getDay(date);
 
   /* Calcula quantos dias faltam para a sexta-feira com base no dia atual */
   if (currentDayOfWeek < 5) {
