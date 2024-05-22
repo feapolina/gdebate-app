@@ -15,12 +15,18 @@
   "dependencies": {
     "@google/generative-ai": "^0.2.1",
     "@radix-ui/themes": "^2.0.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "date-fns": "^3.3.1",
+    "fastify": "^4.27.0",
     "lucide-react": "^0.343.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/node": "^20.12.12",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",

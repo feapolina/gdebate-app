@@ -1,32 +1,36 @@
 import { getDay } from "date-fns";
 import { useState, useEffect } from "react";
-import { LucideSparkles, LucideHourglass } from "lucide-react";
+import { LucideSparkles, LucideLoader2 } from "lucide-react";
 import { generateNewsHeadline } from "./gemini.ts";
+import { Skeleton } from "./components/ui/skeleton.tsx";
 import logo from "/dDMF-logo.svg";
 
 function calculateDaysTillFriday() {
   const date = new Date();
-  const dayOfWeek = getDay(date);
+  //const currentDayOfWeek = getDay(date);
+  const currentDayOfWeek = 5;
 
-  if (dayOfWeek < 5) {
-    const daysTillFriday = 5 - dayOfWeek;
-    return ` ${daysTillFriday}`;
-  } else if (dayOfWeek === 5) {
+  /* Calcula quantos dias faltam para a sexta-feira com base no dia atual */
+  if (currentDayOfWeek < 5) {
+    const daysUntilFriday = 5 - currentDayOfWeek;
+    return ` ${daysUntilFriday}`;
+  } else if (currentDayOfWeek === 5) {
     return "";
   } else {
-    const daysTillNextFriday = 5 + (7 - dayOfWeek);
-    return `${daysTillNextFriday}`;
+    const daysUntilNextFriday = 5 + (7 - currentDayOfWeek);
+    return `${daysUntilNextFriday}`;
   }
 }
 
 export function App() {
   const [newsHeadline, setNewsHeadline] = useState("");
   const [nextDebateOrTitle, setNextDebateOrTitle] = useState("");
-  const daysTillFriday = calculateDaysTillFriday();
+  const daysUntilFriday = calculateDaysTillFriday();
 
+  /* Faz a chamada da função caso seja sexta, e tenta fazer o fetch */
   useEffect(() => {
-    // verifica se já foi gerada um título de debate
-    if (Number(daysTillFriday) === 0) {
+    if (Number(daysUntilFriday) === 0) {
+      setNextDebateOrTitle("HOJE É DIA DE DEBATE!");
       async function fetchNewsHeadline() {
         try {
           const headline = await generateNewsHeadline();
@@ -36,16 +40,10 @@ export function App() {
         }
       }
       fetchNewsHeadline();
-    }
-  }, [daysTillFriday]);
-
-  useEffect(() => {
-    if (Number(daysTillFriday) === 0) {
-      setNextDebateOrTitle("HOJE É DIA DE DEBATE!");
     } else {
       setNextDebateOrTitle("PRÓXIMO DEBATE EM:");
     }
-  });
+  }, [daysUntilFriday]);
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center space-y-10 text-white antialiased font-Inter font-semibold">
@@ -56,7 +54,7 @@ export function App() {
       </h1>
 
       <div className="flex bg-slate-800 w-auto h-auto p-5 justify-center items-center rounded">
-        {Number(daysTillFriday) === 0 ? (
+        {Number(daysUntilFriday) === 0 ? (
           <div>
             {newsHeadline ? (
               <div>
@@ -66,14 +64,18 @@ export function App() {
                 </h3>
               </div>
             ) : (
-              <p className=" text-2xl">Carregando título da notícia...</p>
+              <div className="flex space-x-2">
+                <Skeleton className="w-[100px] h-[10px] rounded-full" />
+                <Skeleton className="w-[50px] h-[10px] rounded-full" />
+                <Skeleton className="w-[200px] h-[10px] rounded-full" />
+              </div>
             )}
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center space-y-2">
-            <h2 className="text-6xl">{daysTillFriday}</h2>
-            <h3 className="ml-0.5">DIAS</h3>
-            <LucideHourglass className="animate-spin-slow " size={16} />
+            <h2 className="text-7xl text-rose-500">{daysUntilFriday}</h2>
+            <h3 className="ml-0.5 text-xl">DIAS</h3>
+            <LucideLoader2 className="animate-spin-slow " size={24} />
           </div>
         )}
       </div>
